@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Rose-Cottage School</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .portal {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+        
+        .portal h1 {
+            text-align: center;
+            font-size: 32px;
+            background: linear-gradient(90deg, #2563eb, #4f46e5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .student-card {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        
+        .student-card p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        
+        .logout-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #4f46e5, #2563eb);
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <h1>Welcome to Your Portal</h1>
+        <p>View your admission details</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="student.html">Login</a>
+    </nav>
+
+    <section class="portal">
+        <div class="student-card" id="studentCard"></div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </section>
+
+    <script>
+        // Retrieve student data from sessionStorage
+        const student = JSON.parse(sessionStorage.getItem("studentData"));
+
+        if (!student) {
+            alert("Please login first");
+            window.location.href = "student.html";
+        } else {
+            const card = document.getElementById("studentCard");
+            card.innerHTML = `
+        <h2>${student.studentName}</h2>
+        <p><strong>Class Applying:</strong> ${student.classApplying}</p>
+        <p><strong>Parent / Guardian:</strong> ${student.parentName}</p>
+        <p><strong>Phone:</strong> ${student.phone}</p>
+        <p><strong>Status:</strong> ${student.status}</p>
+        <p><strong>Date Submitted:</strong> ${new Date(student.date).toLocaleDateString()}</p>
+    `;
+        }
+
+        // Logout function
+        function logout() {
+            sessionStorage.removeItem("studentData");
+            window.location.href = "student.html";
+        }
+    </script>
+
+</body>
+
+</html>

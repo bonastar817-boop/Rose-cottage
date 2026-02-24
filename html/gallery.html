@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>School Gallery</title>
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 40px;
+        }
+        
+        .gallery img {
+            width: 100%;
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-align:center;">📸 School Gallery</h1>
+
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        const API = "https://rose-x1xu.onrender.com";
+
+        async function loadGallery() {
+            const res = await fetch(`${API}/api/gallery`);
+            const data = await res.json();
+
+            const gallery = document.getElementById("gallery");
+            gallery.innerHTML = "";
+
+            data.forEach(photo => {
+                gallery.innerHTML += `
+            <img src="${photo.imageUrl}" alt="School Event">
+        `;
+            });
+        }
+
+        loadGallery();
+    </script>
+
+</body>
+
+</html>

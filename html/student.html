@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Rose-Cottage School</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="fade-in">
+
+    <header class="hero">
+        <h1>🎓 Student Portal</h1>
+        <p>Check your admission status</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="student.html">Student Portal</a>
+    </nav>
+
+    <section>
+        <div class="section-title">
+            <h2 class="gradient-text">Student Login</h2>
+        </div>
+
+        <div class="contact-form">
+            <label>Student Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+
+            <label>Phone Number</label>
+            <input type="tel" id="phone" placeholder="Enter your phone number">
+
+            <button class="gradient-btn" onclick="loginStudent()">
+            Login & Check Status
+        </button>
+        </div>
+    </section>
+
+    <section id="result" style="display:none;">
+        <div class="section-title">
+            <h2 class="gradient-text">Admission Status</h2>
+        </div>
+
+        <div class="card" id="studentCard"></div>
+    </section>
+
+    <footer>
+        <p>© 2026 Rose-Cottage School</p>
+    </footer>
+
+    <script>
+        const API_URL = "https://rose-x1xu.onrender.com/api/admissions";
+
+        async function loginStudent() {
+            const studentName = document.getElementById("name").value;
+            const phone = document.getElementById("phone").value;
+
+            try {
+                const res = await fetch(`${API_URL}/api/student/login`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        studentName,
+                        phone
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    alert(data.message || "Login failed");
+                    return;
+                }
+
+                // Save student data in sessionStorage
+                sessionStorage.setItem("studentData", JSON.stringify(data.student));
+
+                // Redirect to portal page
+                window.location.href = "student-portal.html";
+
+            } catch (error) {
+                alert("Server error. Try again later.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>
