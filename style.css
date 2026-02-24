@@ -1,0 +1,597 @@
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+
+/* FADE ANIMATION */
+
+.fade-in {
+    animation: fade 0.8s ease forwards;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* HERO */
+
+.hero {
+    background: linear-gradient( rgba(30, 58, 138, 0.85), rgba(37, 99, 235, 0.85)), url("../images/school.jpg") center/cover no-repeat;
+    color: white;
+    padding: 80px 16px;
+    text-align: center;
+}
+
+.logo {
+    width: 90px;
+    margin-bottom: 15px;
+}
+
+
+/* NAV */
+
+nav {
+    background-color: #1e40af;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #dbeafe;
+}
+
+.mode-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav a {
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: #dbeafe;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* SECTIONS – MOBILE FIRST */
+
+section {
+    width: 100%;
+    padding: 60px 16px;
+    margin-bottom: 32px;
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.95), rgba(240, 244, 255, 0.95));
+    border-radius: 20px;
+}
+
+
+/* CENTER ONLY ON LARGE SCREENS */
+
+@media (min-width: 1024px) {
+    section {
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title h2 {
+    font-size: 28px;
+    color: #1e3a8a;
+}
+
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ABOUT */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.about img {
+    width: 100%;
+    border-radius: 14px;
+}
+
+
+/* TIMELINE */
+
+.timeline {
+    border-left: 3px solid #2563eb;
+    padding-left: 20px;
+}
+
+.timeline div {
+    margin-bottom: 25px;
+}
+
+
+/* ADMISSION FORM */
+
+.admission-form {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    padding: 35px;
+    margin: auto;
+    border-radius: 14px;
+}
+
+
+/* GALLERY */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 14px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+
+/* CONTACT */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+
+/* CONTACT FORM */
+
+.contact-form {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    margin: auto;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: 1px solid #c7d2fe;
+}
+
+.contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+
+/* BUTTON */
+
+.gradient-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    color: white;
+}
+
+.gradient-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* FOOTER */
+
+footer {
+    background-color: #1e3a8a;
+    color: white;
+    text-align: center;
+    padding: 18px;
+}
+
+
+/* DARK MODE */
+
+body.dark {
+    background-color: #0f172a;
+    color: #e5e7eb;
+}
+
+body.dark nav,
+body.dark footer {
+    background-color: #020617;
+}
+
+body.dark section {
+    background: linear-gradient( to bottom, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.95));
+}
+
+body.dark .card,
+body.dark .admission-form,
+body.dark .contact-form {
+    background: #020617;
+    color: white;
+}
+
+
+/* GRADIENT TEXT */
+
+.gradient-text {
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* TABLET & UP */
+
+@media (min-width: 768px) {
+    .about {
+        grid-template-columns: 1fr 1fr;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* Ultra-narrow phones / tall screens fix */
+
+@media (max-width: 400px) {
+    /* Cards and gallery collapse to single column */
+    .cards,
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    /* Forms padding smaller so they fit screen */
+    .admission-form,
+    .contact-form {
+        padding: 16px;
+        width: 100%;
+    }
+    /* Reduce hero padding to fit tall, narrow screens */
+    .hero {
+        padding: 60px 12px;
+        font-size: 0.9rem;
+    }
+    /* Navbar links shrink a bit */
+    nav a {
+        flex: 1 1 100%;
+        font-size: 14px;
+        margin: 4px 0;
+    }
+}
+
+.hero {
+    position: relative;
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 1s ease-in-out;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(30, 58, 138, 0.6), rgba(37, 99, 235, 0.6));
+    z-index: 1;
+}
+
+.hero img.logo {
+    width: 90px;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1,
+.hero p {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Gallery grid */
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+
+/* Hover effect */
+
+.gallery img {
+    width: 100%;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.07);
+    filter: brightness(1.1);
+}
+
+
+/* Lightbox overlay */
+
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 12px;
+}
+
+#lightbox:active {
+    display: none;
+}
+
+
+/* News cards fade-in on scroll */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.statement-box {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.statement-box h2 {
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    color: #1f2937;
+    letter-spacing: 0.5px;
+}
+
+.motto-text {
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    background: linear-gradient(90deg, #facc15, #f97316, #fb7185);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: floatIn 1s ease forwards;
+}
+
+.vision-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #374151;
+    animation: fadeIn 1s ease forwards 0.2s;
+    opacity: 0;
+}
+
+
+/* smooth animations */
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.core-values {
+    text-align: center;
+    margin: 60px auto;
+    max-width: 900px;
+    padding: 0 15px;
+}
+
+.core-values h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.values-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.badge {
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: floaty 3.8s ease-in-out infinite;
+}
+
+.values-badges .badge:nth-child(1) {
+    animation-delay: .1s;
+}
+
+.values-badges .badge:nth-child(2) {
+    animation-delay: .4s;
+}
+
+.values-badges .badge:nth-child(3) {
+    animation-delay: .7s;
+}
+
+.values-badges .badge:nth-child(4) {
+    animation-delay: 1s;
+}
+
+.values-badges .badge:nth-child(5) {
+    animation-delay: 1.3s;
+}
+
+.values-badges .badge:nth-child(6) {
+    animation-delay: 1.6s;
+}
+
+.badge:hover {
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    transform: scale(1.05);
+}
+
+
+/* mobile friendliness */
+
+@media(max-width: 480px) {
+    .badge {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+}
+
+@keyframes floaty {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

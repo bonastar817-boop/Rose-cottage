@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Gallery - Rose-Cottage School</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="fade-in">
+
+    <!-- HERO HEADER (Same Style as Your Website) -->
+    <header class="hero">
+        <h1 class="gradient-text">Gallery Upload</h1>
+        <p>Upload school event photos</p>
+    </header>
+
+    <!-- NAVBAR (Your Existing Design) -->
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="upload.html">Upload</a>
+        <a href="contact.html">Contact</a>
+        <button class="mode-btn" onclick="toggleMode()">🌙</button>
+    </nav>
+
+    <!-- UPLOAD SECTION -->
+    <section>
+        <div class="section-title">
+            <h2 class="gradient-text">Upload School Photos</h2>
+            <p>Only admins should upload official school images</p>
+        </div>
+
+        <div class="admission-form fade-in" style="text-align:center;">
+
+            <label style="font-weight:600;">Select Image</label>
+            <input type="file" id="imageInput" accept="image/*" required>
+
+            <button class="gradient-btn" onclick="uploadImage()">
+                📤 Upload Photo
+            </button>
+
+            <p id="statusMsg" style="margin-top:15px;font-weight:600;"></p>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Rose-Cottage School</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+
+    <script>
+        const API_URL = "https://YOUR-BACKEND-URL.onrender.com";
+
+        async function uploadImage() {
+            const fileInput = document.getElementById("imageInput");
+            const statusMsg = document.getElementById("statusMsg");
+
+            if (!fileInput.files.length) {
+                statusMsg.textContent = "Please select an image first.";
+                statusMsg.style.color = "red";
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("image", fileInput.files[0]);
+
+            statusMsg.textContent = "Uploading...";
+            statusMsg.style.color = "#2563eb";
+
+            try {
+                const res = await fetch(`${API_URL}/api/gallery/upload`, {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.error || "Upload failed");
+                }
+
+                statusMsg.textContent = "✅ Photo uploaded successfully!";
+                statusMsg.style.color = "green";
+                fileInput.value = "";
+
+            } catch (error) {
+                statusMsg.textContent = "❌ Upload failed. Check backend.";
+                statusMsg.style.color = "red";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

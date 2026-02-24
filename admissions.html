@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admissions</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="fade-in">
+
+    <header class="hero">
+        <h1>Admissions</h1>
+        <p>Your journey starts here</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="news.html">News</a>
+        <a href="contact.html">Contact</a>
+        <button class="mode-btn" onclick="toggleMode()">🌙</button>
+    </nav>
+
+    <section>
+        <div class="section-title">
+            <h2>Admission Process</h2>
+            <p>Simple, transparent, and student-friendly</p>
+        </div>
+
+        <div class="cards fade-in">
+            <div class="card">
+                <h3>📝 Apply</h3>
+                <p>Fill out the admission form online.</p>
+            </div>
+            <div class="card">
+                <h3>📄 Review</h3>
+                <p>We carefully review each application.</p>
+            </div>
+            <div class="card">
+                <h3>🎓 Enroll</h3>
+                <p>Successful candidates receive an offer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-title">
+            <h2>Admission Form</h2>
+        </div>
+
+        <form class="admission-form fade-in" id="admissionForm">
+
+            <label>Student Full Name</label>
+            <input type="text" name="fullName" required>
+
+            <label>Date of Birth</label>
+            <input type="date" name="age" required>
+
+            <label>Class Applying For</label>
+            <select name="className" required>
+        <option value="">Select</option>
+        <option>Primary</option>
+        <option>Junior Secondary</option>
+        <option>Senior Secondary</option>
+    </select>
+
+            <label>Parent / Guardian Name</label>
+            <input type="text" name="parentName" required>
+
+            <label>Phone Number</label>
+            <input type="tel" name="phone" required>
+
+            <button type="submit" class="gradient-btn">Submit Application</button>
+
+            <p id="formMessage" style="margin-top:15px;font-weight:600;"></p>
+
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2026 Rose-Cottage School</p>
+    </footer>
+
+    <script src="js/theme.js"></script>
+
+    <script>
+        document.getElementById("admissionForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const formData = {
+                studentName: document.querySelector("input[type='text']").value,
+                dob: document.querySelector("input[type='date']").value,
+                classApplying: document.querySelector("select").value,
+                parentName: document.querySelectorAll("input[type='text']")[1].value,
+                phone: document.querySelector("input[type='tel']").value
+            };
+
+            try {
+                const response = await fetch("https://rose-x1xu.onrender.com/api/admissions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+                alert("Application Submitted Successfully 🎉");
+                document.getElementById("admissionForm").reset();
+
+            } catch (error) {
+                alert("Error submitting form 😢");
+                console.error(error);
+            }
+        });
+    </script>
+</body>
+
+</html>
